@@ -77,7 +77,83 @@ Lalu dari project lain, referensikan folder ini di `package.json`:
 }
 ```
 
-### 3. Import ke kode kamu
+### 3. Opsi C — Clone dari Git Repository
+
+Metode ini cocok kalau kamu ingin kode sumber lengkap (termasuk untuk dikembangkan sendiri), dan bisa dipakai di Termux (Android), Windows, Linux, maupun macOS.
+
+#### 🐧 Linux
+
+```bash
+# Update paket & install Node.js + Git (contoh untuk Debian/Ubuntu)
+sudo apt update && sudo apt install -y nodejs npm git
+
+# Clone repository
+git clone https://github.com/WhiskeySockets/Baileys.git
+cd Baileys
+
+# Install dependency
+npm install
+```
+
+#### 🍎 macOS
+
+```bash
+# Pastikan Homebrew sudah terpasang, lalu install Node.js & Git
+brew install node git
+
+# Clone repository
+git clone https://github.com/WhiskeySockets/Baileys.git
+cd Baileys
+
+# Install dependency
+npm install
+```
+
+#### 🪟 Windows
+
+1. Install [Node.js LTS](https://nodejs.org/) dan [Git for Windows](https://git-scm.com/download/win) terlebih dahulu.
+2. Buka **Command Prompt**, **PowerShell**, atau **Git Bash**, lalu jalankan:
+
+```powershell
+git clone https://github.com/WhiskeySockets/Baileys.git
+cd Baileys
+npm install
+```
+
+> 💡 Jika `npm install` gagal karena modul native (contoh: `libsignal`), install dulu **Visual Studio Build Tools** (workload "Desktop development with C++") atau jalankan `npm install --global windows-build-tools` (Node versi lama) sebelum ulangi `npm install`.
+
+#### 📱 Termux (Android)
+
+```bash
+# Update paket Termux
+pkg update && pkg upgrade -y
+
+# Install Node.js dan Git
+pkg install -y nodejs git
+
+# (Opsional tapi disarankan) install build tools untuk modul native
+pkg install -y python make clang
+
+# Clone repository
+git clone https://github.com/WhiskeySockets/Baileys.git
+cd Baileys
+
+# Install dependency
+npm install
+```
+
+> 💡 Jika muncul error terkait memori saat `npm install` di HP dengan RAM kecil, coba jalankan `npm install --no-optional` atau tutup aplikasi lain terlebih dahulu.
+> 💡 Agar sesi tetap jalan di background Termux, aktifkan **Wake Lock** (`termux-wake-lock`) dan jangan swipe-close aplikasi Termux dari recent apps.
+
+#### Menjalankan project setelah clone
+
+Setelah `npm install` selesai di platform manapun, buat file `index.js` (contoh ada di bagian [Contoh Penggunaan Dasar](#-contoh-penggunaan-dasar)), lalu jalankan:
+
+```bash
+node index.js
+```
+
+### 4. Import ke kode kamu
 
 Karena library ini ESM, gunakan `import` (bukan `require`) di file `.js` project kamu, dan pastikan `package.json` project kamu memiliki `"type": "module"` — atau gunakan ekstensi `.mjs`:
 
